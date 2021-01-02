@@ -9,11 +9,12 @@ def rotate_image(image, angle):
     return result
 
 
+#source image
 image = cv2.imread("cat.jpg")
-
 size = image.shape
 
 
+#for image rotation
 angle = 180
 rimage = rotate_image(image, angle)
 r_size = rimage.shape
