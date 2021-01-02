@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 
-src = cv2.imread("princess.jpg")
+src = cv2.imread("django.jpg")
 
 
 scale = 2
@@ -34,9 +34,7 @@ grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
 kernel = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
 src1 = cv2.filter2D(grad, -1, kernel)
 
-# dilate
-# kernel = np.ones((1,1),np.uint8)
-# src1 = cv2.dilate(src1,kernel,iterations = 5)
+
 
 # convert single channel to multi channel
 src1 = cv2.cvtColor(src1, cv2.COLOR_GRAY2BGR)
@@ -48,7 +46,7 @@ sharped = cv2.filter2D(src, -1, kernel) #sharp
 # color = cv2.bilateralFilter(srcy, 15, 250, 250) 
 
 #alpha blend images
-e2x = cv2.addWeighted(src1, 0.5, sharped, 0.7, 30)
+e2x = cv2.addWeighted(src1, 0.5, sharped, 0.7, 0)
 
 
 cv2.imshow('org',src)

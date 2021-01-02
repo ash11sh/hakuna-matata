@@ -40,5 +40,5 @@ im_dst = cv2.addWeighted(im_dst, 0.9, im_temp, 0.4, 0)
 
 # Display image.
 cv2.imshow("Image", im_dst)
-# cv2.imwrite("o.jpg", im_dst)
+cv2.imwrite("o.jpg", im_dst)
 cv2.waitKey(0)

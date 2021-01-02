@@ -53,5 +53,5 @@ dst = cv2.addWeighted(src1, 0.4, src2, 0.8, 30)
 
 cv2.imshow("chalk-effect", dst)
 cv2.imshow('org',src)
-# cv2.imwrite('chalk-effect.jpg',dst)
+cv2.imwrite('chalk-effect.jpg',dst)
 cv2.waitKey(0)
