@@ -21,6 +21,6 @@ Requirements:
 
 ## magic card effect
 
-| <img src="magic-cards/cat.jpg" style="zoom: 15%;" /> | <img src="magic-cards/catm.jpg"  /> |
-| ---------------------------------------------------- | ----------------------------------- |
+| <img src="magic-cards/cat.jpg" style="zoom: 15%;" /> | <img src="magic-cards/catm.jpg" style="zoom: 67%;" /> |
+| ---------------------------------------------------- | ----------------------------------------------------- |
 
