@@ -10,9 +10,17 @@ Requirements:
 
 
 
-Canvas effect
+## Canvas effect
 
-| <img src="canvas-effect/nature.jpg" style="zoom: 33%;" /> | <img src="canvas-effect/nature-effect.jpg"  />        |
-| --------------------------------------------------------- | ----------------------------------------------------- |
-| <img src="magic-cards/cat.jpg" style="zoom: 33%;" />      | <img src="magic-cards/catm.jpg" style="zoom: 67%;" /> |
+| <img src="canvas-effect/nature.jpg" style="zoom: 33%;" /> | <img src="canvas-effect/nature-effect.jpg" style="zoom:;" /> |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+
+
+
+
+
+## magic card effect
+
+| <img src="magic-cards/cat.jpg" style="zoom: 33%;" /> | <img src="magic-cards/catm.jpg" style="zoom: 67%;" /> |
+| ---------------------------------------------------- | ----------------------------------------------------- |
 
