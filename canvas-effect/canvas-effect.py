@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 
-src = cv2.imread("pallavi.JPG")
+src = cv2.imread("princess.jpg")
 
 
 scale = 2
