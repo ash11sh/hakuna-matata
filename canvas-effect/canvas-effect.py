@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 
-src = cv2.imread("django.jpg")
+src = cv2.imread("im.jpg")
 
 
 scale = 2
@@ -51,5 +51,5 @@ e2x = cv2.addWeighted(src1, 0.5, sharped, 0.7, 0)
 
 cv2.imshow('org',src)
 cv2.imshow("paint-effect", e2x)
-# cv2.imwrite('effect2.jpg',e2x)
+cv2.imwrite('effect2.jpg',e2x)
 cv2.waitKey(0)

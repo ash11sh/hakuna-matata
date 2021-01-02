@@ -12,7 +12,7 @@ Requirements:
 
 ## Canvas effect
 
-| <img src="canvas-effect/nature.jpg" style="zoom: 33%;" /> | <img src="canvas-effect/nature-effect.jpg" style="zoom:;" /> |
+| <img src="canvas-effect/im.jpg" style="zoom: 33%;" /> | <img src="canvas-effect/im-effect2.jpg" style="zoom:;" /> |
 | --------------------------------------------------------- | ------------------------------------------------------------ |
 
 
