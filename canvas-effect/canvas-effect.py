@@ -5,16 +5,17 @@ from PIL import Image
 
 src = cv2.imread("im.jpg")
 
+blur = cv2.GaussianBlur(src, (3, 3), 0)
+gray = cv2.cvtColor(blur, cv2.COLOR_BGR2GRAY)
+
+
+# apply sobel filter
 
 scale = 2
 delta = 0
 ddepth = cv2.CV_16S
 
-src = cv2.GaussianBlur(src, (3, 3), 0)
-gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 
-
-# apply sobel filter
 grad_x = cv2.Sobel(
     gray, ddepth, 1, 0, ksize=1, scale=scale, delta=delta, borderType=cv2.BORDER_DEFAULT
 )
@@ -35,21 +36,20 @@ kernel = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
 src1 = cv2.filter2D(grad, -1, kernel)
 
 
-
 # convert single channel to multi channel
 src1 = cv2.cvtColor(src1, cv2.COLOR_GRAY2BGR)
 
 
-#experimental - cartoon effect
+# experimental - cartoon effect
 # srcy = cv2.GaussianBlur(src, (5, 5), 0)
-sharped = cv2.filter2D(src, -1, kernel) #sharp
-# color = cv2.bilateralFilter(srcy, 15, 250, 250) 
+sharped = cv2.filter2D(blur, -1, kernel)  # sharp
+# color = cv2.bilateralFilter(srcy, 15, 250, 250)
 
-#alpha blend images
+# alpha blend images
 e2x = cv2.addWeighted(src1, 0.5, sharped, 0.7, 0)
 
 
-cv2.imshow('org',src)
+cv2.imshow("org", src)
 cv2.imshow("paint-effect", e2x)
-cv2.imwrite('effect2.jpg',e2x)
+# cv2.imwrite("effect2.jpg", e2x)
 cv2.waitKey(0)
