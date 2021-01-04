@@ -4,7 +4,7 @@
 
 
 
-<img src="/home/ashish/photofunia/hakuna-matata/chromakeying/johnblack.png" style="zoom: 67%;" />
+<img src="johnblack.png" style="zoom: 67%;" />
 
 
 
