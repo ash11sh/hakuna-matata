@@ -1,5 +1,4 @@
 from PIL import Image, ImageDraw
-from matplotlib import pyplot as plt
 import numpy as np
 
 
@@ -8,8 +7,8 @@ im = Image.open("monica.jpg").convert("L")
 width, height = im.size
 
 max_dots = 140
-background_colour = [224, 255, 255]
-dots_colour = (0,0,139)
+background_colour = [224, 255, 255] #rgb
+dots_colour = (0,0,139) #rgb
 
 # down size to number of dots
 if height == max(height, width):
