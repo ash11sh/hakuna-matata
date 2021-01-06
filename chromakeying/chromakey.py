@@ -4,46 +4,49 @@ import cv2
 # Read source image.
 im_src = cv2.imread("friends.jpg")
 
-
-# Read destination image
+# Read background image
 im_dst = cv2.imread("john.jpg")
 
-# make a copy of destination image
+# make a copy of background image
 img = im_dst.copy()
 
 
-# Create a vector of source points.
-
-size = im_src.shape
-pts_src = np.array(
-    [[0, 0], [size[1] - 1, 0], [size[1] - 1, size[0] - 1], [0, size[0] - 1]],
-    dtype=float,
-)
-
-
-# four points of dest.location
+# four points of location to be replaced
 pts_dst = np.array([[154.0, 148.0], [316.0, 118.0], [316.0, 377.0], [133.0, 377.0]])
 
 
-# Calculate Homography between source and destination points
-h, status = cv2.findHomography(pts_src, pts_dst)
+def warp_img(im_src, im_dst, pts_dst):
 
-# Warp source image
-im_temp = cv2.warpPerspective(im_src, h, (im_dst.shape[1], im_dst.shape[0]))
+    # Create a vector of source points.
+    size = im_src.shape
 
-# Black out polygonal area in destination image.
-im_dst = cv2.fillConvexPoly(im_dst, pts_dst.astype(int), 0, 16)
+    pts_src = np.array(
+        [[0, 0], [size[1] - 1, 0], [size[1] - 1, size[0] - 1], [0, size[0] - 1]],
+        dtype=float,
+    )
 
-im_dst = im_dst + im_temp
+    # Calculate Homography between source and background points
+    h, status = cv2.findHomography(pts_src, pts_dst)
+
+    # Warp source image
+    im_temp = cv2.warpPerspective(im_src, h, (im_dst.shape[1], im_dst.shape[0]))
+    im_dst = cv2.fillConvexPoly(im_dst, pts_dst.astype(int), 0, 16)
+    im_dst = im_dst + im_temp
+
+    return im_dst
 
 
-# blending images
+# Apply homographic alignment on source image to match with the location in  background image.
+im_dst = warp_img(im_src, im_dst, pts_dst)
+
+
+# blending source and background images
 alpha = 0.9
 beta = 1.0 - alpha
 im_dst = cv2.addWeighted(im_dst, alpha, img, beta, 0)
 
 
-# john bill board location - polygon points
+# polygon points of location to be replaced.
 points = [
     [190.9310201104511, 145.84557674273205],
     [271.4499322705011, 128.12128790246948],
@@ -75,37 +78,25 @@ points = [
 ]
 
 
-
-
-# converting points to int type from float
+# converting polygon points to int type from float
 poly_points = []
-
 for i in points:
     poly_points.append([int(i[0]), int(i[1])])
 
 contours = np.array(poly_points)
 
-
-# creating black screen for chroma keying
-black_screen = cv2.fillPoly(img, pts=[contours], color=(0, 0, 0))
-
-# cv2.imshow("black", black_screen)
-# cv2.imwrite("johnblack.png", black_screen)
-
-black_screen = cv2.cvtColor(black_screen, cv2.COLOR_BGR2RGB)
-billy = cv2.cvtColor(im_dst, cv2.COLOR_BGR2RGB)
+# filling the area to be replaced with green colour
+green_screen = cv2.fillPoly(img, pts=[contours], color=(0, 100, 0))
 
 
-# chroma key conversion changing black color area
-black_range = np.array([0, 0, 0])  # rgb
-mask = cv2.inRange(black_screen, black_range, black_range)
-res = cv2.bitwise_and(black_screen, black_screen, mask=mask)
-fu = black_screen - res
-fu = np.where(fu == 0, billy, fu)
+# chroma key conversion
+green_range = np.array([0, 100, 0])  # rgb
+mask = cv2.inRange(green_screen, green_range, green_range)
+res = cv2.bitwise_and(green_screen, green_screen, mask=mask)
+fu = green_screen - res
+fu = np.where(fu == 0, im_dst, fu)
 
 
-#convert to rgb and save
-fu = cv2.cvtColor(fu, cv2.COLOR_BGR2RGB)
-# cv2.imwrite("johnres.png", fu)
+# view final image
 cv2.imshow("res", fu)
 cv2.waitKey(0)
