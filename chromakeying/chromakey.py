@@ -40,11 +40,6 @@ def warp_img(im_src, im_dst, pts_dst):
 im_dst = warp_img(im_src, im_dst, pts_dst)
 
 
-# blending source and background images
-alpha = 0.9
-beta = 1.0 - alpha
-im_dst = cv2.addWeighted(im_dst, alpha, img, beta, 0)
-
 
 # polygon points of location to be replaced.
 points = [
